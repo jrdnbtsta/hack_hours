@@ -12,10 +12,17 @@ cachedFunction('foo', 'baz'); // should be executed, because the method wasn't i
  */
 
 function cache(func) {
-  // do your magic here
-  let cached = {};
-  
-  return () => {
-    if(
-  };
+	// do your magic here
+	let cached = {};
+
+	return (arg1, arg2) => {
+		let concat = arg1.toString() + arg2.toString();
+
+		if (cached.concat) {
+			return cached.concat;
+		} else {
+			cached.concat = func(arg1, arg2);
+			return cached.concat;
+		}
+	}
 }
