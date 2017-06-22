@@ -15,14 +15,27 @@ function cache(func) {
 	// do your magic here
 	let cached = {};
 
-	return (arg1, arg2) => {
-		let concat = arg1.toString() + arg2.toString();
-
-		if (cached.concat) {
-			return cached.concat;
+	return () => {
+		let concat = JSON.stringify(arguments);
+		
+		console.log('CACHE:', cached);
+		if (cached[concat]) {
+			return cached[concat];
 		} else {
-			cached.concat = func(arg1, arg2);
-			return cached.concat;
+			cached[concat] = func(args);
+			return cached[concat];
 		}
 	}
 }
+
+
+var complexFunction = function(arg1, arg2) {
+	return arg1 + arg2;
+};
+
+var cachedFunction = cache(complexFunction);
+
+cachedFunction('foo', 'bar');
+cachedFunction('foo', 'bar');
+
+
