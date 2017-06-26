@@ -15,14 +15,13 @@ function cache(func) {
 	// do your magic here
 	let cached = {};
 
-	return () => {
-		let concat = JSON.stringify(arguments);
-		
-		console.log('CACHE:', cached);
+	return (...args) => {
+		let concat = JSON.stringify(...args);
+
 		if (cached[concat]) {
 			return cached[concat];
 		} else {
-			cached[concat] = func(args);
+			cached[concat] = func(...args);
 			return cached[concat];
 		}
 	}
