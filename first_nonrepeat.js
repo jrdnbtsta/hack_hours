@@ -13,7 +13,7 @@ If a string contains all repeating characters, it should return the empty string
 function firstNonRepeatingLetter(s) {
   lowerS = s.toLowerCase();
 
-  for(let i = 0; i < s.length/2; i += 1) {
+  for(let i = 0; i < s.length; i += 1) {
       let test1 = lowerS.lastIndexOf(lowerS[i]);
       let test2 = lowerS.indexOf(lowerS[i]);
       if(test1 === i && test2 === i) return s[i];
@@ -22,4 +22,4 @@ function firstNonRepeatingLetter(s) {
 }
 
 
-console.log(firstNonRepeatingLetter('moom'));
+console.log(firstNonRepeatingLetter('moonmen'));
